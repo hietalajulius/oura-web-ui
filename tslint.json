@@ -1,0 +1,25 @@
+{
+    "extends": [
+      "tslint:recommended",
+      "tslint-config-prettier",
+      "tslint-plugin-prettier"
+    ],
+    "linterOptions": {
+      "exclude": [
+        "**/*.json"
+      ]
+    },
+    "rules": {
+      "interface-name": false,
+      "object-literal-sort-keys": false,
+      "ordered-imports": false,
+      "prettier": true,
+      "max-classes-per-file": false,
+      "no-shadowed-variable": false,
+      "member-access": false,
+      "curly": false,
+      "no-empty": false,
+      "no-console": false
+    }
+  }
+  

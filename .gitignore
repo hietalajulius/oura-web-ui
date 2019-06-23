@@ -1,0 +1,14 @@
+secrets.js
+
+node_modules/
+
+dist/
+
+logs/
+*.log
+*.log.*
+
+.env
+
+Thumbs.db
+.DS_Store
