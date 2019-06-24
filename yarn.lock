@@ -1646,9 +1646,9 @@ koa-session@^5.12.0:
     is-type-of "^1.0.0"
     uuid "^3.3.2"
 
-"koa-simple-oauth-oura-patch@https://github.com/hietalajulius/koa-simple-oauth-oura-patch/tarball/9d0db5a":
+"koa-simple-oauth-oura-patch@https://github.com/hietalajulius/koa-simple-oauth-oura-patch/tarball/b53194a":
   version "1.1.0"
-  resolved "https://github.com/hietalajulius/koa-simple-oauth-oura-patch/tarball/9d0db5a#fb6d32c47ec5c8d97f5d50e2176e92dfdca6860f"
+  resolved "https://github.com/hietalajulius/koa-simple-oauth-oura-patch/tarball/b53194a#889067a90e285408f1c4ec20419d3a6570facde5"
   dependencies:
     babel-runtime "^6.26.0"
     node-fetch "^1.7.3"

@@ -48,9 +48,10 @@ export const oauthConfig = {
   }
 };
 
-const { isLoggedIn, requireLogin } = simpleOauth(oauthConfig, router);
+const { isLoggedIn, requireLogin, refreshToken } = simpleOauth(oauthConfig, router);
 
 router.use(isLoggedIn);
+router.use(refreshToken);
 router.get("", async ctx => {
   if (ctx.state.isLoggedIn()) {
     ctx.body =
@@ -65,6 +66,11 @@ router.get("/user", async ctx => {
   ctx.body = {
     user: { id: "user_id", isAdmin: true }
   };
+});
+
+router.get("/refresh", async ctx => {
+  await ctx.state.refreshToken();
+  ctx.body = "Token refreshed:" + ctx.session.token;
 });
 
 router.get("/error", async ctx => {

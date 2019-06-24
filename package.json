@@ -12,7 +12,7 @@
     "koa-mount": "^4.0.0",
     "koa-router": "^7.4.0",
     "koa-session": "^5.12.0",
-    "koa-simple-oauth-oura-patch": "https://github.com/hietalajulius/koa-simple-oauth-oura-patch/tarball/9d0db5a",
+    "koa-simple-oauth-oura-patch": "https://github.com/hietalajulius/koa-simple-oauth-oura-patch/tarball/b53194a",
     "moment": "^2.24.0",
     "prettier": "^1.18.2",
     "tslint": "^5.18.0",
