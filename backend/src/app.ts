@@ -7,6 +7,7 @@ import * as compose from "koa-compose";
 import * as mount from "koa-mount";
 import ouraLoginRoutes from "./routes/ouraLogin";
 import ouraStatsRoutes from "./routes/ouraStats";
+import * as serve from "koa-static";
 
 const app = new Koa();
 const router = new Router();
@@ -24,13 +25,13 @@ app.use(
   })
 );
 app.use(mount("/oura", compose([mount(ouraLoginRoutes), mount(ouraStatsRoutes)])));
-router.get("/success", async ctx => {
-  ctx.body = "<a href='http://localhost:3000'>Back to home</a>";
-});
 
-router.get("", async ctx => {
-  ctx.body = "<a href='http://localhost:3000/oura'>Let's do that OURA stuff</a>";
-});
+const frontend = new Koa();
+frontend.use(serve("./dist/build_frontend"));
+app.use(mount("/", frontend));
+app.use(mount("/success", frontend));
+app.use(mount("/error", frontend));
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.listen(3000);

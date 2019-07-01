@@ -2,12 +2,13 @@ import * as Router from "koa-router";
 import axios from "axios";
 // @ts-ignore
 import simpleOauth from "koa-simple-oauth-oura-patch";
-import { oauthConfig } from "./ouraLogin";
+import ouraOauthConfig from "./ouraOauthConfig";
 import * as moment from "moment";
+import { DailySleepStats } from "../../../types";
 
 const router = new Router();
 
-const { isLoggedIn, requireLogin } = simpleOauth(oauthConfig, router);
+const { isLoggedIn, requireLogin } = simpleOauth(ouraOauthConfig, router);
 
 router.use(isLoggedIn);
 
@@ -22,16 +23,16 @@ router.get("/stats", requireLogin, async ctx => {
     const resp = await axios.get(
       `https://api.ouraring.com/v1/sleep?start=${year}-${month}-${day}&access_token=${token}`
     );
-    console.log(day, resp.data);
     const seconds = resp.data.sleep[0].total;
     const duration = moment.duration(seconds, "seconds");
-    ctx.body = `<p>
-      ${duration.get("hours")} Hours, ${duration.get(
-      "minutes"
-    )} Minutes </p> <br> <a href='http://localhost:3000/oura'>Back to OURA home</a>`;
+    const stats: DailySleepStats = {
+      hours: duration.get("hours"),
+      minutes: duration.get("minutes")
+    };
+    ctx.body = stats;
   } catch (e) {
     console.log(e);
-    ctx.body = " No Stuffz, check error from logs";
+    ctx.body = { message: "No stats found" };
   }
 });
 

@@ -2,11 +2,10 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es2017",
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "outDir": "./dist",
         "sourceMap": true,
-        "allowJs": true,
-        "jsx": "react"
+        "allowJs": true
     },
     "include": [
         "./src/**/*"
