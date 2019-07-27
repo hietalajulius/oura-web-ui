@@ -16,6 +16,7 @@ router.get("/user", async ctx => {
   };
 });
 
+// REMOVE
 router.get("/refresh", requireLogin, async ctx => {
   await ctx.state.refreshToken();
   ctx.body = "Token refreshed:" + JSON.stringify(ctx.session.token);

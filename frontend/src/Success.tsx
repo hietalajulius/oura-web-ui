@@ -1,13 +1,14 @@
 import * as React from "react";
 
-class Success extends React.PureComponent<{}> {
-    render() {
-        return (<>SUCCESS<br /><button onClick={this.onClose}>Close window</button></>)
-    }
+const Success: React.SFC<{}> = ({ }) => {
 
-    private onClose = () => {
-        window.close();
+  const loginListener = () => {
+    if (window.opener) {
+      window.opener.ouraCallback();
     }
+  };
+  window.addEventListener("load", loginListener);
+  return (<div/>)
 }
 
 export default Success;
