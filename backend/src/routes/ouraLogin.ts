@@ -33,9 +33,9 @@ router.get("/success", async ctx => {
 });
 
 router.get("/ping", async ctx => {
-  const status = ctx.state.isLoggedIn() ? true : false;
+  const status = ctx.state.isLoggedIn();
   ctx.body = {
-    message: status
+    authenticated: status
   };
 });
 

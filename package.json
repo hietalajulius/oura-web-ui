@@ -1,8 +1,9 @@
 {
-    "name": "fataura",
-    "version": "0.1.0",
-    "scripts": {
-      "deps": "cd backend && yarn && cd ../frontend && yarn"
-    }
+  "name": "fataura",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "cd backend && ts-node ./src/app.ts",
+    "deps": "yarn && cd backend && yarn && cd ../frontend && yarn",
+    "build-frontend": "cd ./frontend && yarn build"
   }
-  
+}

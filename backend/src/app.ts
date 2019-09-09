@@ -12,7 +12,7 @@ import * as serve from "koa-static";
 const app = new Koa();
 const router = new Router();
 
-app.keys = ["secretSessionKey"];
+app.keys = ["secretSessionKey"]; // TODO edit to proper value
 const sessionConfig = {};
 app.use(session(sessionConfig, app));
 app.use(bodyParser());

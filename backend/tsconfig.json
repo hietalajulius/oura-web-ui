@@ -5,7 +5,8 @@
         "noImplicitAny": false,
         "outDir": "./dist",
         "sourceMap": true,
-        "allowJs": true
+        "allowJs": true,
+        "typeRoots": ["./src/types", "./node_modules/@types"],
     },
     "include": [
         "./src/**/*"
