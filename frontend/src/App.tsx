@@ -44,8 +44,8 @@ class App extends React.PureComponent<Props, State> {
   }
 
   private ouraAuthenticateStatus = async () => {
-    const res = await axios.get("/oura/ping");
-    const loginStatus = res.data.message as boolean;
+    const res = await axios.get("/oura/loginstatus");
+    const loginStatus = res.data.authenticated as boolean;
     this.props.setOuraLoggedIn(loginStatus);
   };
 

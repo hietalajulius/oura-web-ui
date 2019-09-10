@@ -32,7 +32,7 @@ router.get("/success", async ctx => {
   ctx.res.end();
 });
 
-router.get("/ping", async ctx => {
+router.get("/loginstatus", async ctx => {
   const status = ctx.state.isLoggedIn();
   ctx.body = {
     authenticated: status
