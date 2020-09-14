@@ -13,22 +13,24 @@ const { isLoggedIn, requireLogin } = simpleOauth(ouraOauthConfig, router);
 router.use(isLoggedIn);
 
 router.get("/stats", requireLogin, async ctx => {
+  const days = ctx.request.query.days || 1
+  console.log("This manu days", days)
   const date = new Date();
-  const day = date.getDate() - 1;
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
+  date.setDate(date.getDate() - days);
+  const dateString = date.toISOString().split("T")[0];
+
 
   const token = ctx.session.token.access_token;
   try {
     const resp = await axios.get(
-      `https://api.ouraring.com/v1/sleep?start=${year}-${month}-${day}&access_token=${token}`
+      `https://api.ouraring.com/v1/sleep?start=${dateString}&access_token=${token}`
     );
-    const seconds = resp.data.sleep[0].total;
-    const duration = moment.duration(seconds, "seconds");
-    const stats: DailySleepStats = {
-      hours: duration.get("hours"),
-      minutes: duration.get("minutes")
-    };
+    const stats = resp.data.sleep.map(day => {
+      console.log("Day", day)
+      const duration = moment.duration(day.total, "seconds");
+      return {hours: duration.get("hours"), minutes: duration.get("minutes"), date: day.summary_date}
+    })
+    
     ctx.body = stats;
   } catch (e) {
     console.log(e);
